@@ -1,0 +1,49 @@
+extends layout
+block layout-content
+  script(src = "jquery.min.js")
+  script(src = "helper.js")
+  .container.View.WelcomeView
+    h1.Banner #{blockchain_name} Faucet
+    div.Message.center
+      div.Title
+      p Enter Tweet URL
+      input(
+          id="tweet_url"
+          type="text"
+          class="full_width"
+          value="https://twitter.com/testing_one_/status/1431755736707526660"
+      )
+      br
+      br
+      button.clearButton.center(onclick="clearTwitterInput()", id="clear_input") Clear
+      br
+      button.NavButton.center(id="button_send_tokens", onclick="onButtonClickTwitter($('#tweet_url').val())") Get STATE
+      //- br
+      //- button.NavButton.center(id="button_send_state", onclick="onButtonClickTwitterState($('#tweet_url').val())") Get STATE
+      br 
+      .progress
+        #pb.progress-bar.progress-bar-striped.progress-bar-animated(role='progressbar' aria-valuemin='0' aria-valuemax='100' style='width: 0%')
+      hr
+      p Mention #{twitter_handle} & provide your address & follow 
+      a(
+        href="https://parastate.io"
+        target="_blank"
+      ) ParaState
+      hr
+      a(
+        href="https://parastate.io"
+        target="_blank"
+      )
+        img.center.small_image(
+          src="ps.jpeg"
+        )
+      br
+      p.small Address: #{erc20_address}
+      a(
+        href="https://t.me/joinchat/FFwdJTS7jF02OTdl"
+        target="_blank"
+      )
+        img.center(
+          src="sticker_image.png"
+        )
+        
