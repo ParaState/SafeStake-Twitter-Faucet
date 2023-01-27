@@ -155,7 +155,7 @@ const main = async () => {
     if ((await keyv.get(`twitter-faucet-count-${result.user.id}`)) === 6) {
       const toastObjectFail = {
         avatar: 'toast-avatar.jpg',
-        text: 'Rate limit! Your can only request State token three times',
+        text: 'Rate limit! Your can only request State token six times',
         duration: 15000,
         close: true,
         gravity: 'top', // `top` or `bottom`
@@ -185,7 +185,7 @@ const main = async () => {
     if ((await keyv.get(`ethaddress-faucet-count-${ethAddress[0]}`)) === 6) {
       const toastObjectFail = {
         avatar: 'toast-avatar.jpg',
-        text: `Sorry! the address of ${ethAddress[0]} can only funded three times.`,
+        text: `Sorry! the address of ${ethAddress[0]} can only funded six times.`,
         duration: 15000,
         close: true,
         gravity: 'top', // `top` or `bottom`
