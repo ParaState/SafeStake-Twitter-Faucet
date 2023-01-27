@@ -94,7 +94,7 @@ env:
   gas_price: "50000000000"
   gas_limit: "8000000"
   server_name: "testnet-faucet.safestake.xyz"
-  server_port: "8001"
+  server_port: "80"
   https: "no"
   host: 0.0.0.0
   twitter_id: "xxxxxxxx"
