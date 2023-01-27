@@ -87,8 +87,8 @@ env:
   faucet_public_key: "xxxxxxxxxxxx"
   blockchain_rpc: "xxxx"
   blockchain_chain_id: 5
-  user_rate_limit: 10
-  rate_limit_duration: 1440
+  user_rate_limit: 5
+  rate_limit_duration: 5
   erc20_token_amount_in_wei: 120000000000000000000
   blockchain_logo_url: http://testnet-faucet.safestake.xyz/toast-avatar.jpg
   blockchain_name: "Goerli Testnet"
