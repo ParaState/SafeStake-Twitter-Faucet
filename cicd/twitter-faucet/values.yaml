@@ -1,0 +1,108 @@
+# Default values for twitter-faucet.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: 315172653259.dkr.ecr.ap-southeast-1.amazonaws.com/safestake-twitter-faucet
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+  faucet_private_key: "xxxxxxxxxxxx"
+  faucet_public_key: "xxxxxxxxxxxx"
+  blockchain_rpc: "xxxx"
+  blockchain_chain_id: 5
+  user_rate_limit: 10
+  rate_limit_duration: 1440
+  erc20_token_amount_in_wei: 120000000000000000000
+  blockchain_logo_url: http://testnet-faucet.safestake.xyz/toast-avatar.jpg
+  blockchain_name: "Goerli Testnet"
+  gas_price: "50000000000"
+  gas_limit: "8000000"
+  server_name: "testnet-faucet.safestake.xyz"
+  server_port: "8001"
+  https: "no"
+  host: 0.0.0.0
+  twitter_id: "xxxxxxxx"
+  twitter_handle: "@parastateio"
+  erc20_address: "xxxxxx"
+  database_uri: "xxxxxx"
+  DB_ROOT_HOST: ""
+  DB_NAME: "twitter-faucet"
+  DB_USER: "xxxxxx"
+  DB_PASS: "xxxxxx"
+  TZ: "Asia/Shanghai"

@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "twitter-faucet.fullname" . }}
+  labels:
+    {{- include "twitter-faucet.labels" . | nindent 4 }}
+data:
+  .env: |-
+    faucet_private_key={{ .Values.env.faucet_private_key }}
+    faucet_public_key={{ .Values.env.faucet_public_key}}
+    blockchain_rpc={{ .Values.env.blockchain_rpc }}
+    blockchain_chain_id=5
+    user_rate_limit=10
+    rate_limit_duration=1440
+    erc20_token_amount_in_wei=120000000000000000000
+    blockchain_logo_url=http://testnet-faucet.safestake.xyz/toast-avatar.jpg
+    blockchain_name="Goerli Testnet"
+    gas_price="50000000000"
+    gas_limit="8000000"
+    server_name="testnet-faucet.safestake.xyz"
+    server_port="8001"
+    https="no"
+    host=0.0.0.0
+    twitter_id={{ .Values.env.twitter_id }}
+    twitter_handle="@parastateio"
+    erc20_address={{ .Values.env.erc20_address }}
+    database_uri={{ .Values.env.database_uri }}
+    DB_ROOT_HOST={{ .Values.env.DB_ROOT_HOST }}
+    DB_NAME="twitter-faucet"
+    DB_USER={{ .Values.env.DB_USER }} 
+    DB_PASS={{ .Values.env.DB_PASS}}
+    TZ="Asia/Shanghai"
