@@ -152,40 +152,10 @@ const main = async () => {
       return res.send(toastObjectFail);
     }
 
-    if ((await keyv.get(`twitter-faucet-count-${result.user.id}`)) === 6) {
-      const toastObjectFail = {
-        avatar: 'toast-avatar.jpg',
-        text: 'Rate limit! Your can only request State token six times',
-        duration: 15000,
-        close: true,
-        gravity: 'top', // `top` or `bottom`
-        position: 'right', // `left`, `center` or `right`
-        backgroundColor: 'linear-gradient(to right, #FF0000, #800000)',
-        stopOnFocus: false, // Prevents dismissing of toast on hover
-        onClick() {}, // Callback after click
-      };
-      return res.send(toastObjectFail);
-    }
-
     if ((await keyv.get(`twitter-faucet-lasttx-${result.user.id}`)) === moment().format('YYYY-MM')) {
       const toastObjectFail = {
         avatar: 'toast-avatar.jpg',
         text: 'Rate limit! You already received State tokens for this month',
-        duration: 15000,
-        close: true,
-        gravity: 'top', // `top` or `bottom`
-        position: 'right', // `left`, `center` or `right`
-        backgroundColor: 'linear-gradient(to right, #FF0000, #800000)',
-        stopOnFocus: false, // Prevents dismissing of toast on hover
-        onClick() {}, // Callback after click
-      };
-      return res.send(toastObjectFail);
-    }
-
-    if ((await keyv.get(`ethaddress-faucet-count-${ethAddress[0]}`)) === 6) {
-      const toastObjectFail = {
-        avatar: 'toast-avatar.jpg',
-        text: `Sorry! the address of ${ethAddress[0]} can only funded six times.`,
         duration: 15000,
         close: true,
         gravity: 'top', // `top` or `bottom`
@@ -232,13 +202,9 @@ const main = async () => {
     const receipt = await sendNetworkToken(ethAddress[0]);
 
     if (receipt.status === 'success') {
-      const twitterFaucetCount = (await keyv.get(`twitter-faucet-count-${result.user.id}`)) || 0;
-      await keyv.set(`twitter-faucet-count-${result.user.id}`, twitterFaucetCount + 1);
       await keyv.set(`twitter-faucet-lasttx-${result.user.id}`, moment().format('YYYY-MM'));
 
       const lockReleaser = await sqlLock.getLock(ethAddress[0], 3000);
-      const ethAddressCount = (await keyv.get(`ethaddress-faucet-count-${ethAddress[0]}`)) || 0;
-      await keyv.set(`ethaddress-faucet-count-${ethAddress[0]}`, ethAddressCount + 1);
       await keyv.set(`ethaddress-faucet-lasttx-${ethAddress[0]}`, moment().format('YYYY-MM'));
       lockReleaser();
 
