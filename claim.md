@@ -39,7 +39,7 @@ tweet must follow this format: `A message + Mention the ParaState Twitter accoun
 
 #### Step 4. Copy your tweet url and paste to faucet
 
-Twitter faucet url: https://testnet.faucet.safestake.xyz/
+Twitter faucet url: https://testnet-faucet.safestake.xyz/
 
 Once created, Click on your tweet and copy the respective address from your web browser.
 
