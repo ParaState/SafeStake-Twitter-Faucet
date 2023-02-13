@@ -2,6 +2,7 @@ extends layout
 block layout-content
   script(src = "jquery.min.js")
   script(src = "helper.js")
+  include ./google-analytics.pug
   .container.View.WelcomeView
     h1.Banner #{blockchain_name} Faucet
     div.Message.center
